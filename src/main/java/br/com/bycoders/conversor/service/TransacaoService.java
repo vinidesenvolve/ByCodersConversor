@@ -18,11 +18,11 @@ public class TransacaoService {
 
   @Autowired
   TransacaoRepository transacaoRepo;
- 
-  List<String> transacoes = new ArrayList<>();
 
   public ResponseEntity<String> parseTransacao(String arquivoPath)
     throws FileNotFoundException {
+
+    List<String> transacoes = new ArrayList<>();
     File file = new File(arquivoPath);
     Scanner scanner = new Scanner(file);
 
@@ -32,10 +32,10 @@ public class TransacaoService {
 
     scanner.close();
 
-    return save();
+    return save(transacoes);
   }
 
-  public ResponseEntity<String> save() {    
+  private ResponseEntity<String> save(List<String> transacoes) {
     transacoes
       .stream()
       .forEach(
@@ -55,19 +55,11 @@ public class TransacaoService {
         }
       );
 
-      return new ResponseEntity<>("Transações salvas!", HttpStatus.OK);
+    return new ResponseEntity<>("Transações salvas!", HttpStatus.OK);
   }
 
-  public void getAll() {
-    //Consulting...
+  public ResponseEntity<List<Transacao>> getAll() {
+    return new ResponseEntity<>(transacaoRepo.findAll(), HttpStatus.OK);
   }
-  // System.out.println("Tipo: " + transacao.substring(0, 1));
-  // System.out.println("Data: " + transacao.substring(1, 9));
-  // System.out.println("Valor: " + transacao.substring(9, 19));
-  // System.out.println("CPF: " + transacao.substring(19, 30));
-  // System.out.println("Cartão: " + transacao.substring(30, 42));
-  // System.out.println("Hora: " + transacao.substring(42, 48));
-  // System.out.println("Dono: " + transacao.substring(48, 62));
-  // System.out.println("Loja: " + transacao.substring(62));
-  // System.out.println("----------------------------------------");
+  
 }
