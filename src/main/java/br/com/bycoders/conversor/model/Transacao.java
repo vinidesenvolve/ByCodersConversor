@@ -1,6 +1,8 @@
 package br.com.bycoders.conversor.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,11 +26,11 @@ public class Transacao {
     private Long id;
 
     private String tipo;
-    private String data;
+    private LocalDate data;
     private BigDecimal valor;
     private String cpf;
     private String cartao;
-    private String hora;
+    private LocalTime hora;
     private String dono;
     private String loja;
 }
