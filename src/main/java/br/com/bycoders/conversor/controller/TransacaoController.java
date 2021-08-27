@@ -1,6 +1,9 @@
 package br.com.bycoders.conversor.controller;
 
+import java.io.FileNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +20,8 @@ public class TransacaoController {
     TransacaoService transacaoService;
 
     @PostMapping
-    public void save(@RequestBody String arquivo) {
-        transacaoService.parseTransacao(arquivo);
+    public ResponseEntity<String> save(@RequestBody String arquivoPath) throws FileNotFoundException {
+        return transacaoService.parseTransacao(arquivoPath);
     }
 
     @GetMapping("/all")
