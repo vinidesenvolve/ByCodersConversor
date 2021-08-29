@@ -15,13 +15,13 @@ import br.com.bycoders.conversor.model.Transacao;
 import br.com.bycoders.conversor.service.TransacaoService;
 
 @RestController
-@RequestMapping(path="/transacao")
+@RequestMapping
 public class TransacaoController {
     
     @Autowired
     TransacaoService transacaoService;
 
-    @PostMapping
+    @PostMapping("/upload")
     public ResponseEntity<String> upload(@RequestParam MultipartFile arquivo) {
         return transacaoService.loadArquivo(arquivo);
     }
