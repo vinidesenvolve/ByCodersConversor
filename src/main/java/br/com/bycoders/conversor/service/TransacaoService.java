@@ -26,21 +26,6 @@ public class TransacaoService {
   @Autowired
   TransacaoRepository transacaoRepo;
 
-  // public ResponseEntity<String> parseTransacao(String arquivoPath)
-  //   throws FileNotFoundException {
-  //   List<String> transacoes = new ArrayList<>();
-  //   File file = new File(arquivoPath);
-  //   Scanner scanner = new Scanner(file);
-
-  //   while (scanner.hasNextLine()) {
-  //     transacoes.add(scanner.nextLine());
-  //   }
-
-  //   scanner.close();
-
-  //   return save(transacoes);
-  // }
-
   public ResponseEntity<String> loadArquivo(MultipartFile arquivo) {
     List<String> transacoes = new ArrayList<>();
 
