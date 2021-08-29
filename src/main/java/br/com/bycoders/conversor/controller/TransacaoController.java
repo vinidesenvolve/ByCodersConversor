@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.bycoders.conversor.model.Transacao;
+import br.com.bycoders.conversor.dto.TransacaoDTO;
 import br.com.bycoders.conversor.service.TransacaoService;
 
 @RestController
@@ -27,16 +27,7 @@ public class TransacaoController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Transacao>> getAll() {
+    public ResponseEntity<List<TransacaoDTO>> getAll() {
         return transacaoService.getAll();
     }
 }
-
-    //5
-	//20190301
-	//0000013200
-	//55641815063
-	//3123****7687
-	//145607
-	//MARIA JOSEFINA
-	//LOJA DO Ó - MATRIZ

@@ -1,8 +1,5 @@
 package br.com.bycoders.conversor.service;
 
-import br.com.bycoders.conversor.model.Transacao;
-import br.com.bycoders.conversor.repository.TransacaoRepository;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,6 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.bycoders.conversor.dto.TransacaoDTO;
+import br.com.bycoders.conversor.model.Transacao;
+import br.com.bycoders.conversor.repository.TransacaoRepository;
+
 @Service
 public class TransacaoService {
 
@@ -31,10 +32,11 @@ public class TransacaoService {
 
     try {
       InputStream inputStream = arquivo.getInputStream();
-      BufferedReader bReader = new BufferedReader(new InputStreamReader(inputStream));
+      BufferedReader bReader = new BufferedReader(
+        new InputStreamReader(inputStream)
+      );
 
-     transacoes = bReader.lines().collect(Collectors.toList());
-
+      transacoes = bReader.lines().collect(Collectors.toList());
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
@@ -65,8 +67,17 @@ public class TransacaoService {
     return new ResponseEntity<>("Transações recebidas!", HttpStatus.OK);
   }
 
-  public ResponseEntity<List<Transacao>> getAll() {
-    return new ResponseEntity<>(transacaoRepo.findAll(), HttpStatus.OK);
+  public ResponseEntity<List<TransacaoDTO>> getAll() {
+    List<Transacao> transacoes = transacaoRepo.findAll();
+    List<TransacaoDTO> transacoesDTO = new ArrayList<>();
+
+    transacoesDTO =
+      transacoes
+        .stream()
+        .map(t -> new TransacaoDTO(t))
+        .collect(Collectors.toList());
+
+    return new ResponseEntity<>(transacoesDTO, HttpStatus.OK);
   }
 
   private LocalDate parseData(String data) {
