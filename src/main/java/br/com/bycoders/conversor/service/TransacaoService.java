@@ -1,5 +1,8 @@
 package br.com.bycoders.conversor.service;
 
+import br.com.bycoders.conversor.dto.TransacaoDTO;
+import br.com.bycoders.conversor.model.Transacao;
+import br.com.bycoders.conversor.repository.TransacaoRepository;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,16 +13,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import br.com.bycoders.conversor.dto.TransacaoDTO;
-import br.com.bycoders.conversor.model.Transacao;
-import br.com.bycoders.conversor.repository.TransacaoRepository;
 
 @Service
 public class TransacaoService {
@@ -69,13 +67,15 @@ public class TransacaoService {
 
   public ResponseEntity<List<TransacaoDTO>> getAll() {
     List<Transacao> transacoes = transacaoRepo.findAll();
-    List<TransacaoDTO> transacoesDTO = new ArrayList<>();
 
-    transacoesDTO =
-      transacoes
-        .stream()
-        .map(t -> new TransacaoDTO(t))
-        .collect(Collectors.toList());
+    if (transacoes.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    List<TransacaoDTO> transacoesDTO = transacoes
+      .stream()
+      .map(t -> new TransacaoDTO(t))
+      .collect(Collectors.toList());
 
     return new ResponseEntity<>(transacoesDTO, HttpStatus.OK);
   }
