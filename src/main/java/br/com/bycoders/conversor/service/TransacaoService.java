@@ -2,19 +2,23 @@ package br.com.bycoders.conversor.service;
 
 import br.com.bycoders.conversor.model.Transacao;
 import br.com.bycoders.conversor.repository.TransacaoRepository;
-import java.io.File;
-import java.io.FileNotFoundException;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TransacaoService {
@@ -22,17 +26,33 @@ public class TransacaoService {
   @Autowired
   TransacaoRepository transacaoRepo;
 
-  public ResponseEntity<String> parseTransacao(String arquivoPath)
-    throws FileNotFoundException {
+  // public ResponseEntity<String> parseTransacao(String arquivoPath)
+  //   throws FileNotFoundException {
+  //   List<String> transacoes = new ArrayList<>();
+  //   File file = new File(arquivoPath);
+  //   Scanner scanner = new Scanner(file);
+
+  //   while (scanner.hasNextLine()) {
+  //     transacoes.add(scanner.nextLine());
+  //   }
+
+  //   scanner.close();
+
+  //   return save(transacoes);
+  // }
+
+  public ResponseEntity<String> loadArquivo(MultipartFile arquivo) {
     List<String> transacoes = new ArrayList<>();
-    File file = new File(arquivoPath);
-    Scanner scanner = new Scanner(file);
 
-    while (scanner.hasNextLine()) {
-      transacoes.add(scanner.nextLine());
+    try {
+      InputStream inputStream = arquivo.getInputStream();
+      BufferedReader bReader = new BufferedReader(new InputStreamReader(inputStream));
+
+     transacoes = bReader.lines().collect(Collectors.toList());
+
+    } catch (Exception e) {
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
-
-    scanner.close();
 
     return save(transacoes);
   }
