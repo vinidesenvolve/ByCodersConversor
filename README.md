@@ -78,8 +78,12 @@ No terminal ou prompt de comando dentro da pasta que deseja colocar o projeto
   coloque a opção Multipart no corpo do requisição, coloque o nome arquivo 
   e selecione o arquivo [CNAB.txt](https://github.com/vinidesenvolve/ByCodersConversor/blob/master/CNAB.txt) antes de enviar a requisição.
   
+  ![ByCodersUpload](https://user-images.githubusercontent.com/75989911/131509724-daeb64b6-bf39-4c0b-b173-a2067a28095b.png)
+
   Para receber os dados faça requisição GET http://localhost:8080/all
-  
+ 
+  ![ByCodersConsult](https://user-images.githubusercontent.com/75989911/131509745-a647606a-538a-4d53-b4e7-5e500fabdf9e.png)
+
 ## Tecnologias
 
 - [Spring](https://spring.io/)  
