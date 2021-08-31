@@ -23,10 +23,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class TransacaoService {
 
   @Autowired
-  TransacaoRepository transacaoRepo;
+  private TransacaoRepository transacaoRepo;
 
   public ResponseEntity<String> loadArquivo(MultipartFile arquivo) {
     List<String> transacoes = new ArrayList<>();
+
+    if(arquivo.isEmpty()) {
+      return new ResponseEntity<>("Houve um problema: o arquivo está vazio.", HttpStatus.BAD_REQUEST);
+    }
 
     try {
       InputStream inputStream = arquivo.getInputStream();
