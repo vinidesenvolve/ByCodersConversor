@@ -28,8 +28,11 @@ public class TransacaoService {
   public ResponseEntity<String> loadArquivo(MultipartFile arquivo) {
     List<String> transacoes = new ArrayList<>();
 
-    if(arquivo.isEmpty()) {
-      return new ResponseEntity<>("Houve um problema: o arquivo está vazio.", HttpStatus.BAD_REQUEST);
+    if (arquivo.isEmpty()) {
+      return new ResponseEntity<>(
+        "Houve um problema: o arquivo está vazio.",
+        HttpStatus.BAD_REQUEST
+      );
     }
 
     try {
@@ -47,7 +50,8 @@ public class TransacaoService {
   }
 
   private ResponseEntity<String> save(List<String> transacoes) {
-    transacoes
+    try{
+      transacoes
       .stream()
       .forEach(
         t -> {
@@ -66,7 +70,11 @@ public class TransacaoService {
         }
       );
 
-    return new ResponseEntity<>("Transações recebidas!", HttpStatus.OK);
+      return new ResponseEntity<>("Transações recebidas!", HttpStatus.OK);
+    }catch(Exception e) {
+      return new ResponseEntity<>("Não foi possível salvar as transações.", HttpStatus.BAD_REQUEST);
+    }
+
   }
 
   public ResponseEntity<List<TransacaoDTO>> getAll() {

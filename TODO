@@ -1,9 +1,0 @@
-Ter uma tela (via um formulário) para fazer o upload do arquivo
-
-DTO
-
-Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
-
-Ter testes automatizados
-
-Docker compose
