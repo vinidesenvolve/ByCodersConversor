@@ -74,9 +74,9 @@ No terminal ou prompt de comando dentro da pasta que deseja colocar o projeto
   
   No VSCode vá para o Spring Dashboard suba a aplicação
   
-  No Insomnia e faça uma requisição POST http://localhost:8080/upload, coloque 
-  a opção Multipart no corpo do requisição e selecione o arquivo [CNAB.txt](https://github.com/vinidesenvolve/ByCodersConversor/blob/master/CNAB.txt) antes 
-  de enviar a requisição.
+  No Insomnia e faça uma requisição POST http://localhost:8080/upload, 
+  coloque a opção Multipart no corpo do requisição, coloque o nome arquivo 
+  e selecione o arquivo [CNAB.txt](https://github.com/vinidesenvolve/ByCodersConversor/blob/master/CNAB.txt) antes de enviar a requisição.
   
   Para receber os dados faça requisição GET http://localhost:8080/all
   
