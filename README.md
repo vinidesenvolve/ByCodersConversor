@@ -58,24 +58,24 @@ No terminal ou prompt de comando dentro da pasta que deseja colocar o projeto
   Em src/main/reources/application.properties configure esse arquivo com os
   dados do seu Postgre.
   
-   <spring.datasource.url=jdbc:postgresql://localhost:5432/nomeDaBaseDeDados
+    spring.datasource.url=jdbc:postgresql://localhost:5432/nomeDaBaseDeDados
     spring.datasource.username=usuarioPostgre
     spring.datasource.password=senhaPostgre
 
     spring.jpa.hibernate.ddl-auto=create
-    spring.jpa.show-sql=true>
+    spring.jpa.show-sql=true
     
   * spring.jpa.hibernate.ddl-auto criar as tabelas através do mapeamento das models, 
     pequise pelas outras opções como update e create-drop
     
-  * spring.jpa.show-sql não deve ser usada ambiente de produção*
+  * spring.jpa.show-sql não deve ser usada ambiente de produção
 
 ### Testando a API
   
   No VSCode vá para o Spring Dashboard suba a aplicação
   
   No Insomnia e faça uma requisição POST http://localhost:8080/upload, coloque 
-  a opção Multipart no corpo do requisição e selecione o arquivo -[CNAB.txt](https://github.com/vinidesenvolve/ByCodersConversor/blob/master/CNAB.txt) antes 
+  a opção Multipart no corpo do requisição e selecione o arquivo [CNAB.txt](https://github.com/vinidesenvolve/ByCodersConversor/blob/master/CNAB.txt) antes 
   de enviar a requisição.
   
   Para receber os dados faça requisição GET http://localhost:8080/all
