@@ -20,28 +20,28 @@ public class TransacaoDTO {
     
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message="Tipo não pode ser vazio.")
     private String tipo;
 
-    @NotEmpty
+    @NotEmpty(message="Data não pode ser vazio.")
     private LocalDate data;
 
-    @NotNull
+    @NotNull(message="Valor não pode ser vazio.")
     private BigDecimal valor;
 
-    @NotEmpty
+    @NotEmpty(message="CPF não pode ser vazio.")
     private String cpf;
 
-    @NotEmpty
+    @NotEmpty(message="Cartão não pode ser vazio.")
     private String cartao;
 
-    @NotEmpty
+    @NotEmpty(message="Hora não pode ser vazio.")
     private LocalTime hora;
 
-    @NotEmpty
+    @NotEmpty(message="Dono não pode ser vazio.")
     private String dono;
 
-    @NotEmpty
+    @NotEmpty(message="Loja não pode ser vazio.")
     private String loja;
 
     public TransacaoDTO(Transacao transacao) {
