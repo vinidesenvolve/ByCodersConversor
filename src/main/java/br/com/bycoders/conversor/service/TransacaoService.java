@@ -72,17 +72,13 @@ public class TransacaoService {
 
       return new ResponseEntity<>("Transações recebidas!", HttpStatus.OK);
     }catch(Exception e) {
-      return new ResponseEntity<>("Não foi possível salvar as transações.", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>("Não foi possível salvar as transações." + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
   }
 
   public ResponseEntity<List<TransacaoDTO>> getAll() {
     List<Transacao> transacoes = transacaoRepo.findAll();
-
-    if (transacoes.isEmpty()) {
-      return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     List<TransacaoDTO> transacoesDTO = transacoes
       .stream()
