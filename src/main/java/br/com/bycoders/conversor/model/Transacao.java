@@ -30,7 +30,7 @@ public class Transacao {
     @NotEmpty(message="Tipo não pode ser vazio.")
     private String tipo;
 
-    @NotEmpty(message="Data não pode ser vazio.")
+    @NotNull(message="Data não pode ser vazio.")
     private LocalDate data;
 
     @NotNull(message="Valor não pode ser vazio.")
@@ -42,7 +42,7 @@ public class Transacao {
     @NotEmpty(message="Cartão não pode ser vazio.")
     private String cartao;
 
-    @NotEmpty(message="Hora não pode ser vazio.")
+    @NotNull(message="Hora não pode ser vazio.")
     private LocalTime hora;
 
     @NotEmpty(message="Dono não pode ser vazio.")
